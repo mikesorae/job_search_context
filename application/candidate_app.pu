@@ -1,0 +1,40 @@
+@startuml candidate_app
+!include ../domain/jobhunt_context.pu
+
+package application {
+    ' C向けアプリケーション
+    package CandidateApp {
+
+        class CandidateRegistrationUsecase {
+            + verifyEmailRegistered(email)
+            + CandidateId register(email, password)
+        }
+
+        class JobApplyUsecase {
+            + JobApplicationDto apply(jobId, resumeId)
+            + JobApplicationDto cancel(applicationId)
+        }
+
+        class JobSearchUsecase {
+            + JobDto findBy(jobId)
+            + List<JobDto> findBy(jobSearchForm)
+        }
+
+        class ResumeUsecase {
+            + ResumeDto findBy(candidateId)
+            + ResumeDto update(resumeForm)
+        }
+
+        JobApplyUsecase ..> JobHuntContext.JobApplyService
+
+        JobSearchUsecase ..> JobHuntContext.JobRepository
+
+        ResumeUsecase ..> JobHuntContext.ResumeRepository
+
+        CandidateRegistrationUsecase ..> JobHuntContext.CandidateRegistrationService
+    }
+}
+
+CandidateApp ...> JobHuntContext
+
+@enduml

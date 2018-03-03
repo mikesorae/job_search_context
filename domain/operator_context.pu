@@ -1,0 +1,15 @@
+@startuml
+!include core_context.pu
+
+namespace OperatorContext {
+    class OperatorId <<ValueObject>> {
+    }
+
+    class Operator <<AggregateRoot>> {
+    }
+
+    class JobScreening {
+    }
+}
+
+@enduml

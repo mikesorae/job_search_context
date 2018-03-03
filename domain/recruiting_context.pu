@@ -1,0 +1,59 @@
+@startuml sample
+!include core_context.pu
+
+namespace RecruitingContext {
+
+    class Resume <<AggregateRoot>> {
+    }
+
+    class Job <<AggregateRoot>> {
+    }
+
+    class JobRepository <<Repository>> {
+    }
+
+    class RecruiterId <<ValueObject>> {
+    }
+
+    class Recruiter <<AggregateRoot>> {
+        recruiterId
+        corporateId
+    }
+
+    class CorporateId <<ValueObject>> {
+    }
+
+    class Corporate <<AggregateRoot>> {
+        corporateId
+    }
+
+    class JobApplication <<AggregateRoot>> {
+        jobId
+        resumeId
+        candidateId
+    }
+
+    class JobApplicationScreeningEvent <<AggregateRoot>> {
+        applicationId
+    }
+
+    Resume *-- CoreContext.ResumeId
+
+    Job *-- CoreContext.JobId
+    Job *-- CorporateId
+    Job *-- RecruiterId
+
+    JobApplication *-- CoreContext.JobApplicationId
+    JobApplication *- CoreContext.ResumeId
+    JobApplication *- CoreContext.JobId
+
+    JobApplicationScreeningEvent *-- CoreContext.JobApplicationId
+
+    Corporate *-- CorporateId
+
+    Recruiter *-- RecruiterId
+    Recruiter *- CorporateId
+
+}
+
+@enduml

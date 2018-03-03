@@ -1,0 +1,20 @@
+@startuml corporate_app
+!include ../domain/recruiting_context.pu
+
+package application {
+    ' 企業向けアプリケーション
+    package CorporateApp {
+        class JobUsecase {
+            + JobDto findBy(jobId)
+            + List<JobDto> findBy(jobSearchForm)
+            + JobDto create(jobForm)
+            + JobDto update(jobForm)
+        }
+
+        JobUsecase ..> RecruitingContext.JobRepository
+    }
+}
+
+CorporateApp ...> RecruitingContext
+
+@enduml

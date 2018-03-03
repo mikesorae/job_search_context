@@ -1,0 +1,15 @@
+@startuml
+
+' 共通コンテキスト
+namespace CoreContext {
+    class ResumeId <<ValueObject>> {
+    }
+
+    class JobId <<ValueObject>> {
+    }
+
+    class JobApplicationId <<ValueObject>> {
+    }
+}
+
+@enduml

@@ -1,0 +1,14 @@
+@startuml operator_app
+!include ../domain/jobhunt_context.pu
+!include ../domain/recruiting_context.pu
+!include ../domain/operator_context.pu
+
+package application {
+    ' オペレータ向けアプリケーション
+    package OperatorApp {
+    }
+}
+
+OperatorApp ...> OperatorContext
+
+@enduml

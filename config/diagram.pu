@@ -1,0 +1,7 @@
+@startuml diagram_config
+' ダイアグラムの見た目設定
+skinparam monochrome true
+skinparam nodesep 80
+skinparam ranksep 50
+
+@enduml
