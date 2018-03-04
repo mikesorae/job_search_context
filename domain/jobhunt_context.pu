@@ -8,6 +8,11 @@ namespace JobHuntContext {
     class ResumeRepository <<Repository>> {
     }
 
+    class ResumeEvent <<DomainEvent>> {
+        resumeId
+        timestamp
+    }
+
     class Job <<AggregateRoot>> {
         title
     }
@@ -36,6 +41,11 @@ namespace JobHuntContext {
     Resume *-- CoreContext.ResumeId
     Resume *-- CoreContext.CandidateId
     ResumeRepository ..> Resume
+
+    Resume ..> ResumeEvent :publishes
+    ResumeEvent <|-- ResumeCreated
+    ResumeEvent <|-- ResumeUpdated
+    ResumeEvent <|-- ResumeDeleted
 
     Job *-- CoreContext.JobId
     Job *-- JobApplicationSpec

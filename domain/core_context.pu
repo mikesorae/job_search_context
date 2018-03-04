@@ -26,16 +26,6 @@ namespace CoreContext {
         timestamp 
     }
 
-    class JobApplicationSubmitted <<DomainEvent>> {
-    }
-
-    class JobApplicationCancelled <<DomainEvent>> {
-    }
-
-    class JobApplicationUpdated <<DomainEvent>> {
-    }
-
-
     JobApplication *-- JobApplicationId
     JobApplication *- ResumeId
     JobApplication *- JobId

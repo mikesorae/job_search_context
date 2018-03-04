@@ -12,6 +12,9 @@ namespace RecruitingContext {
     class JobRepository <<Repository>> {
     }
 
+    class JobEvent <<DomainEvent>> {
+    }
+
     class RecruiterId <<ValueObject>> {
     }
 
@@ -28,10 +31,18 @@ namespace RecruitingContext {
     }
 
     Resume *-- CoreContext.ResumeId
+    Resume *..> JobHuntContext.ResumeEvent :subscribes
 
     Job *-- CoreContext.JobId
     Job *-- CorporateId
     Job *-- RecruiterId
+    JobRepository ..> Job
+
+    Job ..> JobEvent :publishes
+    JobEvent <|-- JobCreated
+    JobEvent <|-- JobPublished
+    JobEvent <|-- JobUnpublished
+    JobEvent <|-- JobDeleted
 
     Corporate *-- CorporateId
 
