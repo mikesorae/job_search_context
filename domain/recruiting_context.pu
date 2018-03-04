@@ -27,27 +27,11 @@ namespace RecruitingContext {
         corporateId
     }
 
-    class JobApplication <<AggregateRoot>> {
-        jobId
-        resumeId
-        candidateId
-    }
-
-    class JobApplicationScreeningEvent <<AggregateRoot>> {
-        applicationId
-    }
-
     Resume *-- CoreContext.ResumeId
 
     Job *-- CoreContext.JobId
     Job *-- CorporateId
     Job *-- RecruiterId
-
-    JobApplication *-- CoreContext.JobApplicationId
-    JobApplication *- CoreContext.ResumeId
-    JobApplication *- CoreContext.JobId
-
-    JobApplicationScreeningEvent *-- CoreContext.JobApplicationId
 
     Corporate *-- CorporateId
 

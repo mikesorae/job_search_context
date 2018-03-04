@@ -1,4 +1,3 @@
-
 @startuml job_search_system
 !include config/diagram.pu
 !include application/candidate_app.pu

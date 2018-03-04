@@ -12,6 +12,10 @@ namespace JobHuntContext {
         title
     }
 
+    class JobApplicationSpec <<Specification>> {
+        + boolean isSatisfiedBy(resume)
+    }
+
     class JobRepository <<Repository>> {
     }
 
@@ -26,22 +30,6 @@ namespace JobHuntContext {
         + CandidateId register(username, password)
     }
 
-    class JobApplication <<AggregateRoot>> {
-        jobId
-        resumeId
-        candidateId
-    }
-
-    class JobApplicationEvent <<ValueObject>> {
-        applicationId
-        eventType
-        timestamp 
-    }
-
-    class JobApplyService <<DomainService>> {
-        + JobApplication apply(resumeId, jobId)
-    }
-
     Candidate *- CoreContext.CandidateId
     CandidateRegistrationService ..> CandidateRepository
 
@@ -49,15 +37,12 @@ namespace JobHuntContext {
     Resume *-- CoreContext.CandidateId
     ResumeRepository ..> Resume
 
-    JobApplication *-- CoreContext.JobApplicationId
-    JobApplication *- CoreContext.ResumeId
-    JobApplication *- CoreContext.JobId
-
     Job *-- CoreContext.JobId
+    Job *-- JobApplicationSpec
     JobRepository ..> Job
 
-    JobApplyService ..> JobApplication :creates
-    JobApplication ..> JobApplicationEvent :publish
+    JobApplyService ..> CoreContext.JobApplicationRepository
+    JobApplyService ..> JobApplicationSpec :uses
 }
 
 @enduml

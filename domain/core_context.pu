@@ -10,6 +10,42 @@ namespace CoreContext {
 
     class JobApplicationId <<ValueObject>> {
     }
+
+    class JobApplication <<AggregateRoot>> {
+        jobId
+        resumeId
+        candidateId
+    }
+
+    class JobApplicationRepository <<Repository>> {
+    }
+
+    class JobApplicationEvent <<DomainEvent>> {
+        applicationId
+        eventType
+        timestamp 
+    }
+
+    class JobApplicationSubmitted <<DomainEvent>> {
+    }
+
+    class JobApplicationCancelled <<DomainEvent>> {
+    }
+
+    class JobApplicationUpdated <<DomainEvent>> {
+    }
+
+
+    JobApplication *-- JobApplicationId
+    JobApplication *- ResumeId
+    JobApplication *- JobId
+    JobApplicationRepository ..> JobApplication
+
+    JobApplicationEvent <|-- JobApplicationSubmitted
+    JobApplicationEvent <|-- JobApplicationCancelled
+    JobApplicationEvent <|-- JobApplicationUpdated
+
+    JobApplication ..> JobApplicationEvent :publish
 }
 
 @enduml
