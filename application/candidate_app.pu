@@ -3,7 +3,7 @@
 
 package application {
     ' C向けアプリケーション
-    package CandidateApp {
+    namespace CandidateApp {
 
         class CandidateRegistrationUsecase {
             + verifyEmailRegistered(email)

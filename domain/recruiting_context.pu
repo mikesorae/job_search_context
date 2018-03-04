@@ -31,6 +31,7 @@ namespace RecruitingContext {
     }
 
     Resume *-- CoreContext.ResumeId
+    ResumeRepository ..> Resume
     Resume *..> JobHuntContext.ResumeEvent :subscribes
 
     Job *-- CoreContext.JobId

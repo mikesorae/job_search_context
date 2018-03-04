@@ -3,7 +3,7 @@
 
 package application {
     ' 企業向けアプリケーション
-    package CorporateApp {
+    namespace CorporateApp {
         class JobUsecase {
             + JobDto findBy(jobId)
             + List<JobDto> findBy(jobSearchForm)
@@ -11,7 +11,13 @@ package application {
             + JobDto update(jobForm)
         }
 
+        class ResumeUsecase {
+            + Resume findBy(candidateId)
+            + List<Resume> findBy(resumeSearchForm)
+        }
+
         JobUsecase ..> RecruitingContext.JobRepository
+        ResumeUsecase ..> RecruitingContext.ResumeRepository
     }
 }
 

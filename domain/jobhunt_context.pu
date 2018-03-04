@@ -50,6 +50,7 @@ namespace JobHuntContext {
     Job *-- CoreContext.JobId
     Job *-- JobApplicationSpec
     JobRepository ..> Job
+    Job ..> RecruitingContext.JobEvent :subscribes
 
     JobApplyService ..> CoreContext.JobApplicationRepository
     JobApplyService ..> JobApplicationSpec :uses
